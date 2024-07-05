@@ -1,7 +1,7 @@
 
 <?php 
     session_start();
-    if ( !$_SESSION["permisos"]["permisos"]) {
+    if ( !$_SESSION["permisos"]) {
         header(("Location: index.php"));
     }
 

@@ -7,15 +7,19 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
     $usuario = $_POST['fUsuario'];
     $contrase = $_POST['fContraseña'];
     
-    $query= "SELECT permisos FROM  tUsuarios WHERE usuario= '{$usuario}' AND contrase='{$contrase}' ";
+    //$query= "SELECT permisos FROM  tUsuarios WHERE usuario= '{$usuario}' AND contrase='{$contrase}' ";
+    $query= "SELECT permisos FROM  usuarios WHERE nombre= '{$usuario}' AND password='{$contrase}' ";
+
     $result=mysqli_query($conn,$query);
+
     $permisos =null;
     $permisos=$result->fetch_assoc();
 
-    if ($permisos) {
+    if ($result) {
         session_start();
         $_SESSION["permisos"]= $permisos;
-        header("Location: mostrar.php");
+
+        header("Location: ./mostrar.php");
     } 
 }
 ?>
